@@ -26,10 +26,13 @@
 
 // *FORMAT-OFF*
 
-#if __clang__
+#if defined(__clang__)
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Winitializer-overrides"
-#endif // __clang__
+#elif defined(__GNUC__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Woverride-init"
+#endif
 
 static const void *const entry_table[256] = {
     [0 ... 255] = &&entry_default,
@@ -116,6 +119,8 @@ static const void *const entry_table[256] = {
     [MP_BC_BINARY_OP_MULTI ... MP_BC_BINARY_OP_MULTI + MP_BC_BINARY_OP_MULTI_NUM - 1] = &&entry_MP_BC_BINARY_OP_MULTI,
 };
 
-#if __clang__
+#if defined(__clang__)
 #pragma clang diagnostic pop
-#endif // __clang__
+#elif defined(__GNUC__)
+#pragma GCC diagnostic pop
+#endif
