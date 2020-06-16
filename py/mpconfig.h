@@ -1568,14 +1568,22 @@ typedef double mp_float_t;
 
 // Suppress warnings in the case of need
 #ifndef WARNING_DISABLE
+#ifdef __GNUC__
 #define WARNING_DISABLE(warn_type) _Pragma("GCC diagnostic push") _Pragma(WARNING_DISABLE_##warn_type)
-#define WARNING_DISABLE_cast_align        "GCC diagnostic ignored \"-Wcast-align\""
-#define WARNING_DISABLE_bad_function_cast "GCC diagnostic ignored \"-Wbad-function-cast\""
+#define WARNING_DISABLE_cast_align         "GCC diagnostic ignored \"-Wcast-align\""
+#define WARNING_DISABLE_bad_function_cast  "GCC diagnostic ignored \"-Wbad-function-cast\""
+#else
+#define WARNING_DISABLE(warn_type)
+#endif
 #endif
 
 // Suppress warnings in the case of need
 #ifndef WARNING_RESTORE
+#ifdef __GNUC__
 #define WARNING_RESTORE _Pragma("GCC diagnostic pop")
+#else
+#define WARNING_RESTORE
+#endif
 #endif
 
 // Modifier for function which doesn't return

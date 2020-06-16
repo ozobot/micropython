@@ -440,7 +440,9 @@ STATIC mp_obj_t set_unary_op(mp_unary_op_t op, mp_obj_t self_in) {
 
                 for (size_t i = 0; i < max; i++) {
                     if (mp_set_slot_is_filled(set, i)) {
+                        WARNING_DISABLE(bad_function_cast)
                         hash += MP_OBJ_SMALL_INT_VALUE(mp_unary_op(MP_UNARY_OP_HASH, set->table[i]));
+                        WARNING_RESTORE
                     }
                 }
                 return MP_OBJ_NEW_SMALL_INT(hash);

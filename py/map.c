@@ -334,7 +334,9 @@ mp_obj_t mp_set_lookup(mp_set_t *set, mp_obj_t index, mp_map_lookup_kind_t looku
             return MP_OBJ_NULL;
         }
     }
+    WARNING_DISABLE(bad_function_cast) // Required by design
     mp_uint_t hash = MP_OBJ_SMALL_INT_VALUE(mp_unary_op(MP_UNARY_OP_HASH, index));
+    WARNING_RESTORE
     size_t pos = hash % set->alloc;
     size_t start_pos = pos;
     mp_obj_t *avail_slot = NULL;
