@@ -148,7 +148,9 @@ NORETURN void nlr_jump_fail(void *val);
 
 // use nlr_raise instead of nlr_jump so that debugging is easier
 #ifndef MICROPY_DEBUG_NLR
+#ifndef nlr_raise
 #define nlr_raise(val) nlr_jump(MP_OBJ_TO_PTR(val))
+#endif
 #else
 #include "mpstate.h"
 #define nlr_raise(val) \
