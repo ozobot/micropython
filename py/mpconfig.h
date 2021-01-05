@@ -623,6 +623,11 @@
 #define MICROPY_REPL_EVENT_DRIVEN (0)
 #endif
 
+// Whether to hide modules and members started by _ character or not
+#ifndef MICROPY_HIDE_PRIVATE
+#define MICROPY_HIDE_PRIVATE (0)
+#endif
+
 // Whether to include lexer helper function for unix
 #ifndef MICROPY_HELPER_LEXER_UNIX
 #define MICROPY_HELPER_LEXER_UNIX (0)
