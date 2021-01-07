@@ -694,8 +694,8 @@ typedef long long mp_longint_impl_t;
 #define MICROPY_FLOAT_C_FUN(fun) fun##f
 #define MICROPY_FLOAT_EQ(float1, float2) ((((float)float1) < (((float)float2) + FLT_EPSILON)) && (((float)float1) > (((float)float2) - FLT_EPSILON)))
 typedef float mp_float_t;
-#include <float.h>
 #elif MICROPY_FLOAT_IMPL == MICROPY_FLOAT_IMPL_DOUBLE
+#include <float.h>
 #define MICROPY_PY_BUILTINS_FLOAT (1)
 #define MICROPY_FLOAT_CONST(x) x
 #define MICROPY_FLOAT_C_FUN(fun) fun
